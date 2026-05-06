@@ -198,22 +198,31 @@
         ul { margin: auto 0; padding-left: 20px; color: #cbd5e1; font-size: 1.3rem; list-style: none; }
         li { margin-bottom: 18px; display: flex; align-items: center; gap: 20px; }
 
-        /* PASTE MOBILE VIEW HERE */
+        /* MOBILE VIEW: 2x4 Square Grid */
         @media (max-width: 768px) {
             body {
                 overflow-y: auto; 
                 align-items: flex-start;
-                padding: 20px 0;
+                padding: 20px;
                 height: auto;
             }
 
             .presentation-canvas {
-                width: 95vw;
-                aspect-ratio: 9 / 16; 
+                width: 100%;
+                /* Reset height/aspect for the container to let it grow with content */
+                height: auto;
+                aspect-ratio: auto; 
                 max-height: none;
-                grid-template-columns: 1fr; 
-                grid-template-rows: auto;
-                gap: 15px;
+                
+                /* 2 Columns, 4 Rows */
+                grid-template-columns: repeat(2, 1fr);
+                grid-template-rows: repeat(4, auto);
+                gap: 12px;
+            }
+
+            .tile {
+                /* Forces tiles to be perfect squares on mobile */
+                aspect-ratio: 1 / 1;
             }
 
             .tile.active {
@@ -223,6 +232,11 @@
                 width: 100vw;
                 height: 100vh;
                 z-index: 9999;
+                aspect-ratio: auto; /* Reset aspect ratio when expanded to full screen */
+            }
+            
+            .tile.active .tile-inner {
+                border-radius: 0;
             }
         }
     </style>
