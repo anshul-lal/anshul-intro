@@ -203,28 +203,40 @@
             body {
                 overflow-y: auto; 
                 align-items: flex-start;
-                padding: 20px;
+                padding: 40px 15px; /* Added more top/bottom padding */
                 height: auto;
             }
 
             .presentation-canvas {
                 width: 100%;
-                /* Reset height/aspect for the container to let it grow with content */
                 height: auto;
                 aspect-ratio: auto; 
-                max-height: none;
-                
-                /* 2 Columns, 4 Rows */
                 grid-template-columns: repeat(2, 1fr);
-                grid-template-rows: repeat(4, auto);
                 gap: 12px;
             }
 
             .tile {
-                /* Forces tiles to be perfect squares on mobile */
                 aspect-ratio: 1 / 1;
             }
 
+            /* Fix 1 & 2: Shrink icons and text for mobile squares */
+            .tile-front i {
+                font-size: 2rem; /* Reduced from 3rem */
+                margin-bottom: 8px;
+            }
+
+            .tile-front h2 {
+                font-size: 0.85rem; /* Significantly smaller to fit on one/two lines */
+                padding: 0 10px;
+                line-height: 1.2;
+            }
+
+            .tile-front h3 {
+                font-size: 0.6rem; /* Subtitles need to be tiny */
+                letter-spacing: 1px;
+            }
+
+            /* Ensure the active/expanded view still looks good */
             .tile.active {
                 position: fixed; 
                 top: 0;
@@ -232,11 +244,16 @@
                 width: 100vw;
                 height: 100vh;
                 z-index: 9999;
-                aspect-ratio: auto; /* Reset aspect ratio when expanded to full screen */
+                aspect-ratio: auto;
             }
             
             .tile.active .tile-inner {
                 border-radius: 0;
+            }
+            
+            /* Fix header size on the back of the card for mobile */
+            .tile.active .back-header h2 {
+                font-size: 1.4rem;
             }
         }
     </style>
