@@ -87,9 +87,37 @@
         .tile-back {
             background: #1e293b;
             transform: rotateY(180deg);
-            padding: 25px;
+            /* Increased top padding (40px) to push header down from the edge */
+            padding: 40px 25px 25px 25px;
+            display: flex;
+            flex-direction: column;
+            /* Changed to flex-start so content builds from the top down */
+            justify-content: flex-start;
+            align-items: center;
+            box-sizing: border-box;
+        }
+
+        .back-header {
+            display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
+            gap: 5px;
+            border-bottom: 1px solid var(--accent);
+            padding-bottom: 15px;
+            /* margin-bottom adds space between the header line and your images/list */
+            margin-bottom: 20px;
+            flex-shrink: 0;
+            width: 100%;
+        }
+
+        .back-header h2 {
+            margin: 0;
+            font-size: 1.8rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            line-height: 1.2;
         }
 
         /* 16:9 FLEX COLLAGE SYSTEM */
