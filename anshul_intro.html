@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Intro | Anshul Lal</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --bg: #0f172a;
+            --tile-bg: rgba(30, 41, 59, 0.8);
+            --accent: #38bdf8;
+            --text: #f1f5f9;
+            --transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        /* UPDATED: 16:9 Workspace */
+        .presentation-canvas {
+            position: relative;
+            width: 90vw;
+            aspect-ratio: 16 / 9; 
+            max-height: 85vh;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-template-rows: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .tile {
+            position: relative;
+            cursor: pointer;
+            z-index: 1;
+            transition: var(--transition);
+        }
+
+        .tile-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.1);
+            transform-style: preserve-3d;
+        }
+
+        .tile.active {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 100;
+        }
+
+        .tile.active .tile-inner { transform: rotateY(180deg); }
+
+        .tile-front, .tile-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 15px;
+            display: flex;
+            flex-direction: column;
+            border: 1px solid rgba(255,255,255,0.1);
+            overflow: hidden;
+            box-sizing: border-box;
+        }
+
+        .tile-front {
+            background: var(--tile-bg);
+            backdrop-filter: blur(15px);
+            align-items: center;
+            justify-content: center;
+        }
+
+        .tile-back {
+            background: #1e293b;
+            transform: rotateY(180deg);
+            padding: 25px;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* 16:9 FLEX COLLAGE SYSTEM */
+        .collage-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            /* This ensures it takes up all space below the header */
+            flex-grow: 1; 
+            width: 100%;
+            height: 100%;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+
+        .collage-container img {
+            /* These three lines force the image to be as large as possible without cropping */
+            width: 100%;
+            height: 100%;
+            object-fit: contain; 
+            
+            border-radius: 8px;
+            display: block;
+        }
+
+        /* Center alignment for the text-only tile */
+        .center-content {
+            display: flex;
+            flex-direction: column;
+            justify-content: center; /* Vertical center */
+            align-items: center;     /* Horizontal center */
+            text-align: center;
+        }
+
+        .center-content ul {
+            list-style: none;
+            padding: 0;
+            margin: 20px 0 0 0;
+            width: 100%;
+        }
+
+        .sat-item {
+            font-size: 1.2rem;
+            color: #cbd5e1;
+            margin-bottom: 15px; /* Spacing between lines */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+        }
+
+        .sat-item i {
+            color: var(--accent);
+            width: 25px; /* Keeps icons aligned */
+            text-align: center;
+        }
+
+        .tile-front i { font-size: 3rem; margin-bottom: 12px; color: var(--accent); }
+        .back-header { display: flex; align-items: center; gap: 15px; border-bottom: 1px solid var(--accent); padding-bottom: 10px; margin-bottom: 15px; flex-shrink: 0; }
+        h2 { margin: 0; font-size: 1.8rem; }
+        h3 { margin: 0; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 2.5px; }
+        
+        ul { margin: auto 0; padding-left: 20px; color: #cbd5e1; font-size: 1.3rem; list-style: none; }
+        li { margin-bottom: 18px; display: flex; align-items: center; gap: 20px; }
+    </style>
+</head>
+<body>
+
+    <div class="presentation-canvas" id="grid">
+        
+        <!-- 1. Who is Anshul? (1_1, 1_2, 1_3) -->
+        <div class="tile" onclick="toggleTile(this)">
+            <div class="tile-inner">
+                <div class="tile-front"><i class="fa-solid fa-id-card"></i><h3>Who is Anshul?</h3>
+                 <span class="hint">The New Analyst</span>
+                </div>
+                <div class="tile-back">
+                    <div class="back-header"><h2>Consumer Data Analyst from Hazaribagh, Jharkhand, India</h2></div>
+                    <div class="collage-container">
+                        <img src="https://i.postimg.cc/HrNXRWzV/1.jpg" alt="Who is Anshul">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 2. Favorite Sports Team (2_1, 2_2, 2_3) -->
+        <div class="tile" onclick="toggleTile(this)">
+            <div class="tile-inner">
+                <div class="tile-front"><i class="fa-solid fa-futbol"></i><h3>Favorite Sports Team</h3></div>
+                <div class="tile-back">
+                    <div class="back-header"><h2>🔴 Manchester United Football Club | The Red Devils | #GGMU</h2></div>
+                    <div class="collage-container">
+                        <img src="2.jpg" alt="2_1">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 3. Favorite Place (3_1, 3_2, 3_3, 3_4) -->
+        <div class="tile" onclick="toggleTile(this)">
+            <div class="tile-inner">
+                <div class="tile-front"><i class="fa-solid fa-map-location-dot"></i><h3>Favorite Place</h3></div>
+                <div class="tile-back">
+                    <div class="back-header"><h2>Oslo Outskirts, Norway</h2></div>
+                    <div class="collage-container">
+                        <img src="3.jpg" alt="3_1">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 4. Would Love to Visit (4_1, 4_2, 4_3, 4_4) -->
+        <div class="tile" onclick="toggleTile(this)">
+            <div class="tile-inner">
+                <div class="tile-front"><i class="fa-solid fa-plane"></i><h3>Travel Wishlist</h3></div>
+                <div class="tile-back">
+                    <div class="back-header"><h2>Northern Norway to watch the Northern Lights, and Japan during Cherry Blossom season or during winter</h2></div>
+                    <div class="collage-container">
+                        <img src="4.jpg" alt="4_1">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 5. Favorite Movies (5_1, 5_2) -->
+        <div class="tile" onclick="toggleTile(this)">
+            <div class="tile-inner">
+                <div class="tile-front"><i class="fa-solid fa-film"></i><h3>Favorite Movies</h3></div>
+                <div class="tile-back">
+                    <div class="back-header"><h2>Marvel, LOTR, Star Wars, Harry Potter, and Nolan's Films</h2></div>
+                    <div class="collage-container">
+                        <img src="5.jpg" alt="5_1">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 6. Currently Watching (6_1, 6_2) -->
+        <div class="tile" onclick="toggleTile(this)">
+            <div class="tile-inner">
+                <div class="tile-front"><i class="fa-solid fa-tv"></i><h3>Currently Watching</h3></div>
+                <div class="tile-back">
+                    <div class="back-header"><h2>Current Binge: Lincoln Lawyer S4, while trying to finish watching The Rookie</h2></div>
+                    <div class="collage-container">
+                        <img src="6.jpg" alt="6_1">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 7. Secret Talent (7_1 to 7_5) -->
+        <div class="tile" onclick="toggleTile(this)">
+            <div class="tile-inner">
+                <div class="tile-front"><i class="fa-solid fa-utensils"></i><h3>Not-so-Secret Talent</h3></div>
+                <div class="tile-back">
+                    <div class="back-header"><h2>Cooking/baking, making mean cocktails</h2></div>
+                    <div class="collage-container">
+                        <img src="7.jpg" alt="7_1">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 8. Ideal Saturday (Text Only) -->
+        <div class="tile" onclick="toggleTile(this)">
+            <div class="tile-inner">
+                <div class="tile-front">
+                    <i class="fa-solid fa-mug-hot"></i>
+                    <h3>Ideal Saturday</h3>
+                </div>
+                <!-- Added center-content class here -->
+                <div class="tile-back center-content">
+                    <div class="back-header">
+                        <h2>The Perfect Saturday</h2>
+                    </div>
+                    <ul>
+                        <li class="sat-item"><i class="fa-solid fa-egg"></i> Late brunch &mdash; the later, the better</li>
+                        <li class="sat-item"><i class="fa-solid fa-cart-shopping"></i> Grocery run &amp; chores</li>
+                        <li class="sat-item"><i class="fa-solid fa-soap"></i> Laundry sorted, errands done</li>
+                        <li class="sat-item"><i class="fa-solid fa-mug-saucer"></i> Evening tea with the family</li>
+                        <li class="sat-item"><i class="fa-solid fa-futbol"></i> Sports or a film together</li>
+                        <li class="sat-item"><i class="fa-solid fa-utensils"></i> A proper dinner to end it</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        function toggleTile(element) {
+            if (element.classList.contains('active')) {
+                element.classList.remove('active');
+            } else {
+                document.querySelectorAll('.tile').forEach(t => t.classList.remove('active'));
+                element.classList.add('active');
+            }
+        }
+    </script>
+</body>
+</html>
