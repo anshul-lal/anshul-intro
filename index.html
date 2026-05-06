@@ -97,12 +97,16 @@
         }
 
         .back-header {
+            display: flex;
+            flex-direction: column;
+            align-items: center;      /* Centers the title and subtitle horizontally */
+            justify-content: center;   /* Centers content within the header block */
+            text-align: center;        /* Ensures text wraps and aligns to center */
             width: 100%;
-            flex-shrink: 0; /* Header size is fixed, never squashed */
+            flex-shrink: 0;
             border-bottom: 1px solid var(--accent);
-            padding-bottom: 12px;
-            margin-bottom: 15px;
-            text-align: center;
+            padding-bottom: 15px;
+            margin-bottom: 20px;
         }
 
         .back-header h2 {
@@ -110,10 +114,11 @@
             font-size: 1.8rem;
             display: flex;
             align-items: center;
+            justify-content: center;  /* Centers the text + Red Dot icon */
             gap: 10px;
-            line-height: 1.2;
+            width: 100%;
         }
-
+        
         /* 16:9 FLEX COLLAGE SYSTEM */
         .collage-container {
             width: 100%;
