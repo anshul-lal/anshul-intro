@@ -181,6 +181,50 @@
         
         ul { margin: auto 0; padding-left: 20px; color: #cbd5e1; font-size: 1.3rem; list-style: none; }
         li { margin-bottom: 18px; display: flex; align-items: center; gap: 20px; }
+
+        /* ... previous CSS ends here ... */
+
+        .sat-item i {
+            color: var(--accent);
+            width: 25px; /* Keeps icons aligned */
+            text-align: center;
+        }
+
+        .tile-front i { font-size: 3rem; margin-bottom: 12px; color: var(--accent); }
+        .back-header { display: flex; align-items: center; gap: 15px; border-bottom: 1px solid var(--accent); padding-bottom: 10px; margin-bottom: 15px; flex-shrink: 0; }
+        h2 { margin: 0; font-size: 1.8rem; }
+        h3 { margin: 0; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 2.5px; }
+        
+        ul { margin: auto 0; padding-left: 20px; color: #cbd5e1; font-size: 1.3rem; list-style: none; }
+        li { margin-bottom: 18px; display: flex; align-items: center; gap: 20px; }
+
+        /* PASTE MOBILE VIEW HERE */
+        @media (max-width: 768px) {
+            body {
+                overflow-y: auto; 
+                align-items: flex-start;
+                padding: 20px 0;
+                height: auto;
+            }
+
+            .presentation-canvas {
+                width: 95vw;
+                aspect-ratio: 9 / 16; 
+                max-height: none;
+                grid-template-columns: 1fr; 
+                grid-template-rows: auto;
+                gap: 15px;
+            }
+
+            .tile.active {
+                position: fixed; 
+                top: 0;
+                left: 0;
+                width: 100vw;
+                height: 100vh;
+                z-index: 9999;
+            }
+        }
     </style>
 </head>
 <body>
